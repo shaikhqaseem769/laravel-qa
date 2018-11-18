@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Models\Question;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -31,5 +31,8 @@ class User extends Authenticatable
         return $this->hasMany(User::class);
     }
 
-    
+    public function getUrlAttribute(){
+       // return route('question.show', $this->id);
+       return #;
+    }
 }
