@@ -9,7 +9,7 @@ class Question extends Model
     protected $fillable = ['title','body'];
     
     public function user(){
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(User::class);
     }
 
     public function setTitleAttribute($value){
@@ -23,5 +23,15 @@ class Question extends Model
 
     public function getCreatedDateAttribute(){
         return $this->created_at->diffForHumans();
+    }
+
+    public function getStatusAttribute(){
+        if($this->answer > 0){
+            if($this->best_answer_id){
+                return "answered-accepted";
+            }
+            return "answered";
+        }
+        return "unanswered";
     }
 }
